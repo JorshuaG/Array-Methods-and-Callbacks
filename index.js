@@ -94,8 +94,14 @@ Use the higher order function getAverageGoals to do the following:
 */
 
 function getAverageGoals(getFinalsCB) {
-  getFinalsCB().reduce(MatchScore["Home Team Goals"]);
-  console.log(getFinalsCB);
+  const totalScore = getFinalsCB.reduce((totalScore, currentMatch) => {
+    return (
+      totalScore +
+      currentMatch["Home Team Goals"] +
+      currentMatch["Away Team Goals"]
+    );
+  }, 0);
+  return (totalScore / getFinalsCB.length).toFixed(2);
 }
 
 /// 🥅 STRETCH 🥅 ///
